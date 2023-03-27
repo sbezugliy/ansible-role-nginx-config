@@ -73,7 +73,7 @@
                     - $cookie_jsessionid
                     - $request_uri
                   servers:
-                    - address: 0.0.0.0:8081
+                    - address: "0.0.0.0:8081"
                 - name: backend_servers
                   zone:
                     name: backend_mem_zone
@@ -101,11 +101,11 @@
                     status_zone: backend_mem_zone
                   resolver_timeout: 30s
                   servers:
-                    - address: 0.0.0.0:8082
+                    - address: "0.0.0.0:8082"
                       weight: 1
                     - address: unix:/var/run/control.unit.sock
                       weight: 1
-                    - address: 0.0.0.0:8083
+                    - address: "0.0.0.0:8083"
                       down: true
                     - address: example.com
                       weight: 1
@@ -117,7 +117,7 @@
                       resolve: true
                       route: cookie
                       service: http
-                      slow_start: 0s
+                      slow_start: "0s"
                       drain: false
               proxy:
                 cache_path:
@@ -222,7 +222,7 @@
                 header_set:
                   variable: $job
                   name: info
-                leeway: 0s
+                leeway: "0s"
                 type: nested
                 require:
                   values: $jwt_claim_iss
@@ -315,7 +315,7 @@
                       - value: '"~jndi:ldap"'
                         new_value: 1
               realip:
-                set_real_ip_from: 0.0.0.0
+                set_real_ip_from: "0.0.0.0"
                 real_ip_header: X-Real-IP
                 real_ip_recursive: false
               rewrite:
@@ -339,10 +339,10 @@
               servers:
                 - core:
                     listen:
-                      - address: 0.0.0.0
+                      - address: "0.0.0.0"
                         port: 80
                         default_server: true
-                      - address: 0.0.0.0
+                      - address: "0.0.0.0"
                         port: 443
                         ssl: false
                         default_server: true
@@ -375,7 +375,7 @@
                     enable:
                       realm: realm
                       token: $cookie_auth_token
-                    leeway: 0s
+                    leeway: "0s"
                     type: signed
                   auth_request:
                     uri: false
@@ -410,7 +410,7 @@
                         api: true
                       auth_jwt:
                         enable: false
-                        leeway: 0s
+                        leeway: "0s"
                         type: signed
                       auth_request:
                         uri: false
@@ -442,8 +442,8 @@
                         cache: false
                         cache_background_update: false
                         cache_bypass:
-                          - - $cookie_nocache
-                            - $arg_nocache$arg_comment
+                          - $cookie_nocache
+                          - $arg_nocache$arg_comment
                           - $cookie_test
                         cache_convert_head: true
                         cache_key: $scheme$proxy_host$request_uri
@@ -658,7 +658,7 @@
               upstreams:
                 - name: stream_upstream
                   servers:
-                    - address: 0.0.0.0:9091
+                    - address: "0.0.0.0:9091"
                       weight: 1
                       max_conns: 100
                       max_fails: 3
@@ -771,7 +771,7 @@
               servers:
                 - core:
                     listen:
-                      - address: 0.0.0.0
+                      - address: "0.0.0.0"
                         port: 9090
                         ssl: false
                         proxy_protocol: false

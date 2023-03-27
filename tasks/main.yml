@@ -15,20 +15,14 @@
 
 - name: Upload NGINX config
   ansible.builtin.include_tasks: "{{ role_path }}/tasks/config/upload-config.yml"
-  when: nginx_config_upload_enable | bool
-        or nginx_config_upload_html_enable | bool
-        or nginx_config_upload_ssl_enable | bool
+  when: nginx_config_upload_enable | bool or nginx_config_upload_html_enable | bool or nginx_config_upload_ssl_enable | bool
   tags: nginx_config_upload
 
 - name: Create NGINX config
   ansible.builtin.include_tasks: "{{ role_path }}/tasks/config/template-config.yml"
-  when: nginx_config_main_template_enable | bool
-        or nginx_config_http_template_enable | bool
-        or nginx_config_stream_template_enable | bool
-        or nginx_config_status_enable | bool
-        or nginx_config_rest_api_enable | bool
-        or nginx_config_html_demo_template_enable | bool
-        or nginx_config_modules is defined and nginx_config_modules | length > 0
+  when: nginx_config_main_template_enable | bool or nginx_config_http_template_enable | bool or nginx_config_stream_template_enable | bool or nginx_config_status_enable
+    | bool or nginx_config_rest_api_enable | bool or nginx_config_html_demo_template_enable | bool or nginx_config_modules is defined and nginx_config_modules | length
+    > 0
   tags: nginx_config_template
 
 - name: Ensure NGINX is running
