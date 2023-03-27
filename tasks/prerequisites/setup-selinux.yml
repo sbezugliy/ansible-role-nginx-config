@@ -9,7 +9,7 @@
       - selinux-policy-targeted
   when: 
     - ansible_facts['os_family'] == "RedHat"
-    - distribution != 'Amazon LInux 2023'
+    - distribution != 'Amazon Linux 2023'
 
 - name: (Amazon Linux 2023) Install dependencies
   vars: 
@@ -20,8 +20,7 @@
       - policycoreutils
       - selinux-policy-targeted
     when: 
-      - ansible_facts['distribution'] == 'Amazon'
-      - distribution == 'Amazon LInux 2023'
+      - distribution == 'Amazon Linux 2023'
 
 - name: Set SELinux mode to permissive
   ansible.posix.selinux:
