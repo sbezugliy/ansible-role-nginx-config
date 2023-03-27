@@ -21,7 +21,7 @@
       - selinux-policy-targeted
     when: 
       - ansible_facts['distribution'] == 'Amazon'
-      - distribution != 'Amazon LInux 2023'
+      - distribution == 'Amazon LInux 2023'
 
 - name: Set SELinux mode to permissive
   ansible.posix.selinux:
